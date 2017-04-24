@@ -1,0 +1,43 @@
+<html>
+<head>
+  <title>Integration of socket.io with Node.Js</title>
+  <style>
+    #chat{
+      height:500px;
+    }
+  </style>
+</head>
+<body>
+  <header style="text-align:center">
+    Integration of Node.Js with socket.io
+  </header>
+  <div id="chat"></div>
+  <form id="send-message" style="text-align:center">
+    Send message to server <br />
+    <input id = "message"/>
+    <input type= "submit" />
+  </form>
+
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+
+  <script>
+    $(document).ready(function(){
+      var socket = io.connect();
+      var $messageForm = $('#send-message');
+      var $messageBox = $('#message');
+      var $chat = $('#chat');
+
+      $messageForm.submit(function(e){
+        e.preventDefault();
+        socket.emit('send message', $messageBox.val());
+        $messageBox.val('');
+      });
+      socket.on('new message', function(data){
+        $chat.append("Server's response in b64 : "+data + "<br/>");
+        socket.emit('success message', data);
+      });
+    });
+  </script>
+</body>
+</html>
