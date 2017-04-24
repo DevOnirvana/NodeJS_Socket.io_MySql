@@ -4,3 +4,5 @@ Install node.
 Go to current directory.
 run npm install.
 then you are good to go.
+start the server usng command node index.js.
+connect to localhost:3000
