@@ -1,0 +1,12 @@
+version: '2'
+services:
+  assignment1:
+    build: .
+    ports:
+      - "3000:3000"
+    container_name: assignment1
+    # volumes:
+    # - .:/node/node_modules
+    extra_hosts:
+    - "db.sql.priceboard.in:172.17.0.1"
+    command: node index.js
